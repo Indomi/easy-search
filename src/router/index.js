@@ -2,22 +2,10 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import Manage from '@/components/Manage/Manage'
+import List from '@/components/List/List'
 
 Vue.use(Router)
-const User = {
-  template: `
-    <div>
-      <h2>User {{ $route.params.id }} </h2>
-      <route-view></route-view>
-    </div>
-  `,
-  watch: {
-    '$route'(to, from) {
-      console.log(to);
-      console.log(from);
-    }
-  }
-}
+
 const Error404 = {
   template: '<h2>404错误</h2>'
 }
@@ -33,14 +21,15 @@ export default new Router({
       path: '/manage',
       name: 'Manage',
       component: Manage
-    },{
-      path: '/user/:id',
-      component: User,
-      children: [
-        { path: 'profile', component: UserProfile }
-      ]
-    },{
+    },
+    {
+      path: '/list',
+      name: 'List',
+      component: List
+    },
+    {
       path: '*',
+      name: '404',
       component: Error404
     }
   ]

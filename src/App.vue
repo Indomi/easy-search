@@ -2,16 +2,16 @@
 <div class="layout">
   <Layout :style="{minHeight: '100vh'}">
     <Sider collapsible :collapsed-width="78" v-model="isCollapsed">
-      <Menu active-name="1-1" theme="dark" width="auto" :class="menuitemClasses">
-        <MenuItem name="1-1">
+      <Menu active-name="list" theme="dark" width="auto" :class="menuitemClasses">
+        <MenuItem name="manage" to="/">
           <Icon type="ios-bug-outline" />
           <span>管理</span>
         </MenuItem>
-        <MenuItem name="1-2">
-          <Icon type="ios-folder-open-outline" />
-          <span>列表</span>
+        <MenuItem name="list" to="/list">
+            <Icon type="ios-folder-open-outline" />
+            <span>列表</span>
         </MenuItem>
-        <MenuItem name="1-3">
+        <MenuItem name="setting">
         <Icon type="ios-build-outline" />
         <span>配置</span>
         </MenuItem>
@@ -39,8 +39,12 @@
   export default {
     data() {
       return {
-        isCollapsed: false
+        isCollapsed: true,
+        activeMenu: ''
       };
+    },
+    created() {
+      console.log(this.$router.options)
     },
     computed: {
       menuitemClasses: function () {
